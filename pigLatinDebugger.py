@@ -4,7 +4,19 @@ vowels = ("a","e","i","o","u","A","E","I","O","U")
 # Input values
 test_words = [ "dog","scratch","is","apple","brb","donald","trump","liverpool","grumpy","."]
 
-# Are these words correct ????????
+# Confirmed Correct
+
+#Enter a word: ogday
+#Enter a word: atchscray
+#Enter a word: isyay
+#Enter a word: appleyay
+#Enter a word: brbay
+#Enter a word: onaldday
+#Enter a word: umptray
+#Enter a word: iverpoollay
+#Enter a word: umpygray
+#Enter a word: 
+
 correct_words = [ "ogday","atchscray","isyay","appleyay","brbay","onaldday","umptray","iverpoollay","umpygray","." ]
 
 new_word = ""
@@ -12,6 +24,10 @@ correct_count = 0
 incorrect_count = 0
 
 for index, word in enumerate(test_words):
+    # Resetting word change and new_name
+    word_changed = False
+    new_name = ""
+    
     if word == ".":
         break
 
@@ -21,18 +37,32 @@ for index, word in enumerate(test_words):
     if first_letter in vowels:
         # This formula is correct
         new_word = word + "yay"
+        word_changed = True
     else:
         # This formula is somewhat incorrect
-        for letter_index, letter in enumerate(word):
-            new_word = word[1:]+word[0] + "ay"
-            continue
+        # Try two
+        for letter_index in range(len(word)):
+            if word[letter_index] in vowels:
+                new_word = word[letter_index:]+word[:letter_index]+"ay"
+                word_changed = True
+    
+    if word_changed == False:
+        new_word = word + "ay"
+
+
+
+        # Try one
+        #for letter_index, letter in enumerate(word):
+        #    if letter[letter_index] in vowels:
+        #        new_word = word[1:]+word[0] + "ay"
+        #        continue
     # FORMULA ENDS ------------------------------------------------------------
 
     if new_word == correct_words[index]:
-        print("[input:"+word+" / output:"+new_word+"] is correct match")
+        #print("[input:"+word+" / output:"+new_word+"] is correct match")
         correct_count += 1
     else:
-        print("--> [input:"+word+" / output:"+new_word+"] is incorrect match, should be [" + correct_words[index] + "]")
+        print("INCORRECT --> [input:"+word+" / output:"+new_word+" / should be:"+correct_words[index]+"] <-- INCORRECT")
         incorrect_count += 1
 
 print("\n")
