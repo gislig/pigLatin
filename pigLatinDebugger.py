@@ -11,7 +11,7 @@ test_words = [ "dog","scratch","is","apple","brb","donald","trump","liverpool","
 #Enter a word: isyay
 #Enter a word: appleyay
 #Enter a word: brbay
-#Enter a word: onaldday
+#Enter a word: onaldday donald [d] [onald] ay
 #Enter a word: umptray
 #Enter a word: iverpoollay
 #Enter a word: umpygray
@@ -28,6 +28,7 @@ for index, word in enumerate(test_words):
     word_changed = False
     new_name = ""
     
+    # Breaking out if 
     if word == ".":
         break
 
@@ -38,14 +39,17 @@ for index, word in enumerate(test_words):
         # This formula is correct
         new_word = word + "yay"
         word_changed = True
-    else:
-        # This formula is somewhat incorrect
-        # Try two
-        for letter_index in range(len(word)):
-            if word[letter_index] in vowels:
-                new_word = word[letter_index:]+word[:letter_index]+"ay"
-                word_changed = True
-    
+        continue
+
+    # This formula is somewhat incorrect, but looks promising
+    # Try two
+    for letter_index in range(len(word)):
+        if word[letter_index] in vowels:
+            new_word = word[letter_index:]+word[:letter_index]+"ay"
+            #new_word = word[1:]+word[0] + "ay"
+            word_changed = True
+            continue
+
     if word_changed == False:
         new_word = word + "ay"
 

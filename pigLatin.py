@@ -6,11 +6,12 @@ while True:
     if word == ".":
         break
     lengd = len(word)
+    if word[0] in vowel:
+        contains_vowel = True
+        new_word = word+"yay"
+        continue
+        
     for i in range(lengd):
-        if word[0] in vowel:
-            contains_vowel = True
-            new_word = word+"yay"
-            continue
         if word[i] in vowel:
             contains_vowel = True
             new_word = word[i:]+word[:i]+"ay"
